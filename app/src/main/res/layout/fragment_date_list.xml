@@ -22,4 +22,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/notifications_list"/>
 
+    <ImageButton
+        android:layout_width="94dp"
+        android:background="@drawable/plus"
+        android:layout_height="94dp"
+        android:id="@+id/imageButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
