@@ -20,9 +20,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
+<<<<<<< HEAD
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+=======
+    compile 'com.android.support:support-v4:23.2.0'
+>>>>>>> cf71ac563c342ffeed3f3a6203539d88153f1148
 }

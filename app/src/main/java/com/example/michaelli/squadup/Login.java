@@ -13,7 +13,7 @@ import com.bailey.mobile.squadup.R;
 /**
  * Created by michaelli on 3/29/16.
  */
-public class Home extends Activity{
+public class Login extends Activity{
     DictionaryHelper dictionaryHelper;
 
     @Override
