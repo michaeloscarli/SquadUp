@@ -8,11 +8,10 @@
     android:id="@+id/focusLayout"
     >
 
-    <com.bailey.layouts.ATextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:text="@string/no_unread_notifications"
         android:background="#FFDDDDDD"
         android:padding="50dp"
         android:id="@+id/notification_alert"
