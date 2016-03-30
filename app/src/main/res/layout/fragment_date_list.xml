@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:background="#FFDDDDDD"
-        android:padding="50dp"
-        android:id="@+id/notification_alert"
+        android:padding="50dp""
         android:gravity="center_horizontal"
         />
 

@@ -27,5 +27,16 @@
         android:layout_below="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Let's Get Started!"
+        android:textColor="#FFF"
+        android:id="@+id/textView2L"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
+
 
 </RelativeLayout>
