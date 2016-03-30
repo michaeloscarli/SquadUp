@@ -1,10 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bailey.mobile.squadup">
 
+
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/LOGO"
+        android:icon="@drawable/logo"
         android:label="@string/app_name">
+
+
+        <activity android:name="com.example.michaelli.squadup.Login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
