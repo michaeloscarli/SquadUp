@@ -13,11 +13,12 @@ public class DictionaryHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 2;
     private static final String DICTIONARY_TABLE_NAME = "dictionary";
+    private static final String DATABASE_NAME = "SquadUp";
     private static final String DICTIONARY_GAMES_CREATE = "CREATE TABLE GAMES (UID int, Opponent varchar(255), PlayerID int, HomeScore int, OpponentScore int, Date datetime, Win bool);";
     private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(UID int, points int, games int);";
 
-    DictionaryHelper(Context context, String name) {
-        super(context, name, null, DATABASE_VERSION);
+    DictionaryHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

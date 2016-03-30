@@ -18,7 +18,8 @@ public class Home extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //TODO setContentView(R.layout.player);
+        dictionaryHelper = new DictionaryHelper(this);
 
     }
 }
