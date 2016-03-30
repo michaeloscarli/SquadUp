@@ -1,4 +1,4 @@
-package com.example.michaelli.squadup;
+package com.bailey.mobile.squadup;
 
 import org.junit.Test;
 
