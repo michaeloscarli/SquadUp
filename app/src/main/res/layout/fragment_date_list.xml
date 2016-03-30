@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:id="@+id/focusLayout"
+    >
+
+    <com.bailey.layouts.ATextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/no_unread_notifications"
+        android:background="#FFDDDDDD"
+        android:padding="50dp"
+        android:id="@+id/notification_alert"
+        android:gravity="center_horizontal"
+        />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifications_list"/>
+
+</RelativeLayout>
