@@ -1,7 +1,8 @@
-package com.example.michaelli.squadup;
+package com.bailey.mobile.squadup;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
+import com.facebook.FacebookSdk;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
