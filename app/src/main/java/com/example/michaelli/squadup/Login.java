@@ -20,6 +20,7 @@ public class Login extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        //create dictionary helper that accesses/creates database
         dictionaryHelper = new DictionaryHelper(this);
 
     }
