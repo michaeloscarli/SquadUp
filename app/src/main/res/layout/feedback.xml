@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Your Name"
+        android:ems="10"
+        android:id="@+id/editText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:text="How can we get a hold of you?" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_weight="0.19"
+        android:text="Tell us what you think!" />
+    <ImageView
+        android:layout_width="224dp"
+        android:layout_height="270dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/thumb"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Thanks for your feedback!"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

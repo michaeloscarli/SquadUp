@@ -1,8 +1,8 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:icon">@drawable/LOGO</item>
-        <item name="logo">@drawable/LOGO</item>
+        <item name="android:icon">@drawable/logo</item>
+        <item name="logo">@drawable/logo</item>
         <item name="displayOptions">useLogo|showHome|showTitle</item>
     </style>
 </resources>
