@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/facebook"
-            android:layout_marginBottom="131dp"
+            android:layout_marginBottom="87dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"></ImageButton>
 
@@ -35,8 +35,7 @@
         android:textColor="#FFF"
         android:id="@+id/textView2L"
         android:layout_alignBottom="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp" />
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
