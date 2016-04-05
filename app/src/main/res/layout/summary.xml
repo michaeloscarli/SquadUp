@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/placeholder"
+            android:text="@String/gameDate"
             android:id="@+id/gameDate"/>
 
     </LinearLayout>
@@ -143,7 +143,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamA"
             android:id="@+id/teamA" />
 
         <TextView
@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamAQ1"
             android:id="@+id/teamAQ1"
             android:layout_weight="0.1" />
 
@@ -160,7 +160,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamAQ2"
             android:id="@+id/teamAQ2"
             android:layout_weight="0.1" />
 
@@ -169,7 +169,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamAQ3"
             android:id="@+id/teamAQ3"
             android:layout_weight="0.1" />
 
@@ -178,7 +178,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamAQ4"
             android:id="@+id/teamAQ4"
             android:layout_weight="0.1" />
 
@@ -187,7 +187,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamATotal"
             android:id="@+id/teamATotal"
             android:layout_weight="0.1" />
 
@@ -203,7 +203,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamB"
             android:id="@+id/teamB" />
 
         <TextView
@@ -211,7 +211,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBQ1"
             android:id="@+id/teamBQ1"
             android:layout_weight="0.1" />
 
@@ -220,7 +220,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBQ2"
             android:id="@+id/teamBQ2"
             android:layout_weight="0.1" />
 
@@ -229,7 +229,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBQ3"
             android:id="@+id/teamBQ3"
             android:layout_weight="0.1" />
 
@@ -238,7 +238,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBQ4"
             android:id="@+id/teamBQ4"
             android:layout_weight="0.1" />
 
@@ -247,7 +247,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBTotal"
             android:id="@+id/teamBTotal"
             android:layout_weight="0.1" />
 
@@ -362,7 +362,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/playerName"
             android:id="@+id/playerName" />
 
         <TextView
@@ -370,7 +370,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/FT"
             android:id="@+id/FT"
             android:layout_weight="0.1" />
 
@@ -379,7 +379,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/twoPT"
             android:id="@+id/twoPT"
             android:layout_weight="0.1" />
 
@@ -388,7 +388,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/threePT"
             android:id="@+id/threePT"
             android:layout_weight="0.1" />
 
@@ -397,7 +397,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/totalPTS"
             android:id="@+id/totalPTS"
             android:layout_weight="0.1" />
 
