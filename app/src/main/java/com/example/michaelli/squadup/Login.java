@@ -28,6 +28,9 @@ public class Login extends Activity{
         SQLiteDatabase test = dictionaryHelper.getWritableDatabase();
         Log.d("Login", dictionaryHelper.getDatabaseName());
         Cursor c = test.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+        c.moveToFirst();
+        c.moveToNext();
+        c.moveToNext();
         Log.d("Login", c.getString(0));
 
 
