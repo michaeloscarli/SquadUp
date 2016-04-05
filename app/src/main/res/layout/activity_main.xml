@@ -10,10 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/basketballcourt">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
 
     <ImageButton android:id="@+id/btnFindMe"
         android:layout_width="wrap_content"

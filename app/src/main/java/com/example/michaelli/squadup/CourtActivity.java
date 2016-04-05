@@ -2,7 +2,10 @@ package com.example.michaelli.squadup;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,10 +44,14 @@ public class CourtActivity extends Activity{
     private TextView Q4;
     private TextView T;
 
+    private DictionaryHelper dh;
+    private SQLiteDatabase db;
+    private int gameID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_capture_actions);
+        setContentView(R.layout.capture_actions);
         newGame();
     }
 
@@ -74,6 +81,32 @@ public class CourtActivity extends Activity{
         Q3 = (TextView) this.findViewById(R.id.Q3);
         Q4 = (TextView) this.findViewById(R.id.Q4);
         T = (TextView) this.findViewById(R.id.T);
+
+        dh = new DictionaryHelper(this);
+
+        dh.insertGame("Jason");
+
+        Cursor cursor = dh.getWritableDatabase().rawQuery("SELECT * FROM Games", null);
+        String arrData[] = null;
+
+//        if(cursor != null)
+//        {
+//            if (cursor.moveToFirst()) {
+////                arrData = new String[cursor.getColumnCount()];
+////
+////
+////
+////                arrData[0] = cursor.getString(0); // DeviceID
+////                arrData[1] = cursor.getString(1); // EmailID
+////                arrData[2] = cursor.getString(2); // Event
+////                arrData[3] = cursor.getString(3); // Operator
+////                arrData[4] = cursor.getString(4); // EventOperator
+//
+//                Log.d("DEBUG", cursor.getString(0) + cursor.getString(1) + cursor.getString(2) + cursor.getString(3) + cursor.getString(13));
+//            }
+//        }
+
+        cursor.close();
     }
 
     public void shotTaken(boolean madeShot, boolean isThree)
