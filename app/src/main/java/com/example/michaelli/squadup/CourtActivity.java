@@ -1,6 +1,7 @@
 package com.example.michaelli.squadup;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -221,11 +222,13 @@ public class CourtActivity extends Activity{
 
     public void teamAPlus1(View view)
     {
-        updateScores(true, R.integer.freeThrow);
+        Resources res = getResources();
+        updateScores(true, res.getInteger(R.integer.freeThrow));
     }
 
     public void teamBPlus1(View view)
     {
-        updateScores(false, R.integer.freeThrow);
+        Resources res = getResources();
+        updateScores(false, res.getInteger(R.integer.freeThrow));
     }
 }

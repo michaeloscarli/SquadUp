@@ -5,6 +5,7 @@ package com.example.michaelli.squadup;
  */
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -79,6 +80,7 @@ public class CourtView extends ImageView implements View.OnTouchListener{
     public boolean onTouch(View v, MotionEvent event)
     {
         CourtActivity activity = (CourtActivity) getContext();
+        Resources res = getResources();
 
         int action = event.getActionMasked();
         float x = event.getX();
@@ -98,11 +100,11 @@ public class CourtView extends ImageView implements View.OnTouchListener{
                     setColor(Color.GREEN);
                     if (isThree)
                     {
-                        activity.updateScores(true, R.integer.threePointer);
+                        activity.updateScores(true, res.getInteger(R.integer.threePointer));
                     }
                     else
                     {
-                        activity.updateScores(true, R.integer.twoPointer);
+                        activity.updateScores(true, res.getInteger(R.integer.twoPointer));
                     }
                 }
                 else
