@@ -15,7 +15,7 @@ public class DictionaryHelper extends SQLiteOpenHelper {
     private static final String DICTIONARY_TABLE_NAME = "dictionary";
     private static final String DATABASE_NAME = "SquadUp";
     private static final String DICTIONARY_GAMES_CREATE = "CREATE TABLE GAMES (UID int, Opponent varchar(255), PlayerID int, HomeScore int, OpponentScore int, Date datetime, Win bool);";
-    private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(UID int, points int, games int);";
+    private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(UID int, points int, numGames int);";
 
     DictionaryHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,6 +25,8 @@ public class DictionaryHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DICTIONARY_GAMES_CREATE);
         db.execSQL(DICTIONARY_PLAYER_CREATE);
+        Log.d("Dictionary Helper", "Creating database");
+
     }
 
     @Override
