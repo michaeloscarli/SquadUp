@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">SquadUp</string>
 
+    <string name="teamAName">Team A</string>
+    <string name="teamBName">Team B</string>
+
+    <string name="placeholder">PH</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">1001012659980275</string>
