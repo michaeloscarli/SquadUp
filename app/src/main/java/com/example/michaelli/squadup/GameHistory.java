@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.util.Log;
 
 import com.bailey.mobile.squadup.R;
 
@@ -24,7 +23,6 @@ public class GameHistory extends Activity{
         dictionaryHelper.insertGame("Jason", 1, 1, 1, 1);
         SQLiteDatabase db = dictionaryHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM GAMES;",null);
-        cursor.moveToFirst();
         populateListView();
     }
 
@@ -34,7 +32,7 @@ public class GameHistory extends Activity{
         Cursor cursor = db.rawQuery("select * from GAMES", null);
         String[] fields = new String[] {"Opponent", "Date"};
         SimpleCursorAdapter simpleCursorAdapter;
-        simpleCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1, cursor,  fields, new int[] { android.R.id.text1,android.R.id.text1},0);
+        simpleCursorAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2, cursor,  fields, new int[] { android.R.id.text1,android.R.id.text2},0);
         ListView listView = (ListView) findViewById(R.id.notifications_list);
         listView.setAdapter(simpleCursorAdapter );
     }
