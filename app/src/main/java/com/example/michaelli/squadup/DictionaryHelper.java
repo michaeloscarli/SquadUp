@@ -25,6 +25,8 @@ public class DictionaryHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DICTIONARY_GAMES_CREATE);
         db.execSQL(DICTIONARY_PLAYER_CREATE);
+        Log.d("Dictionary Helper", "Creating database");
+
     }
 
     @Override
