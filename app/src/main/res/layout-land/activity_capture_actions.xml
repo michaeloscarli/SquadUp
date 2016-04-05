@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parentLayout"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:baselineAligned="false">
@@ -8,22 +9,31 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5">
+        android:layout_weight="0.7">
 
-        <ImageView
-            android:id="@+id/imageView2"
+        <com.example.michaelli.squadup.CourtView
+            android:id="@+id/courtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/testcourt"
-            android:layout_gravity="top" />
+            android:layout_gravity="top"
+            android:src="@drawable/testcourt"/>
+
     </LinearLayout>
 
     <GridLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.3"
         android:columnCount="1"
         >
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Scoreboard"
+            android:id="@+id/scoreboard" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -40,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Q1"
                 android:id="@+id/Q1"
                 />
@@ -50,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Q2"
                 android:id="@+id/Q2" />
 
@@ -59,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Q3"
                 android:id="@+id/Q3" />
 
@@ -68,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Q4"
                 android:id="@+id/Q4" />
 
@@ -77,16 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="T"
                 android:id="@+id/T" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="End Quarter"
-                android:id="@+id/endQuarter" />
 
         </LinearLayout>
 
@@ -97,131 +100,204 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Team A"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/teamAName"
                 android:id="@+id/teamA" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamAQ1"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamAQ1"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamAQ2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamAQ2"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamAQ3"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamAQ3"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamAQ4"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamAQ4"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamATotal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamATotal"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Team B"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/teamBName"
                 android:id="@+id/teamB" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamBQ1"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamBQ1"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamBQ2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamBQ2"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamBQ3"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamBQ3"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamBQ4"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamBQ4"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/teamBTotal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/teamBTotal"
-                android:layout_weight="0.1" />
+                android:layout_weight="0.1"
+                android:editable="true"
+                android:text="0"/>
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/endQuarter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="End Quarter"
+            android:onClick="endQuarter" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/teamAOptions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Team A"/>
+            <Button
+                android:id="@+id/teamAPlus1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+1"
+                android:onClick="teamAPlus1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/teamBOptions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/teamBName"/>
+            <Button
+                android:id="@+id/teamBPlus1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+1"
+                android:onClick="teamBPlus1"/>
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Made Shot"
+                android:id="@+id/madeShot"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Missed Shot"
+                android:id="@+id/missedShot" />
+
+        </RadioGroup>
+
     </GridLayout>
 </LinearLayout>
 

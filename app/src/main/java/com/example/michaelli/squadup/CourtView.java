@@ -7,12 +7,17 @@ package com.example.michaelli.squadup;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+
+
+import com.bailey.mobile.squadup.R;
 
 public class CourtView extends ImageView implements View.OnTouchListener{
     private Paint mPaint;
@@ -22,28 +27,39 @@ public class CourtView extends ImageView implements View.OnTouchListener{
 
     public CourtView(Context context) {
         super(context);
-        initDotsView();
+        initCourtView();
     }
 
     public CourtView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initDotsView();
+        initCourtView();
     }
 
     public CourtView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initDotsView();
+        initCourtView();
     }
 
     public CourtView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initDotsView();
+        initCourtView();
     }
 
-    private void initDotsView() {
+    private void initCourtView()
+    {
+        this.setBackgroundResource(R.drawable.testcourt);
         mPaint = new Paint();
-        dotRadius = 10;
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
         setOnTouchListener(this);
+        setDotRadius(20);
+        setColor(Color.GREEN);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
     }
 
     @Override
@@ -51,16 +67,49 @@ public class CourtView extends ImageView implements View.OnTouchListener{
         canvas.drawBitmap(mBitmap, 0, 0, mPaint);
     }
 
+    public void setDotRadius(int r) {
+        dotRadius = r;
+        mPaint.setStrokeWidth((float) dotRadius);
+    }
 
-    public boolean onTouch(View v, MotionEvent event) {
+    public void setColor(int c) {
+        mPaint.setColor(c);
+    }
+
+    public boolean onTouch(View v, MotionEvent event)
+    {
+        CourtActivity activity = (CourtActivity) getContext();
+
         int action = event.getActionMasked();
-        int index = event.getActionIndex();
-        float x = event.getX(index);
-        float y = event.getY(index);
+        float x = event.getX();
+        float y = event.getY();
+
+        Bitmap b = ((BitmapDrawable)this.getDrawable()).getBitmap();
+        int currPixel = b.getPixel((int) x, (int) y);
+        boolean isThree = isThreePointer(currPixel);
+
+        boolean madeShot = ((RadioButton) activity.findViewById(R.id.madeShot)).isChecked();
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+                if (madeShot)
+                {
+                    setColor(Color.GREEN);
+                    if (isThree)
+                    {
+                        activity.updateScores(true, R.integer.threePointer);
+                    }
+                    else
+                    {
+                        activity.updateScores(true, R.integer.twoPointer);
+                    }
+                }
+                else
+                {
+                    setColor(Color.RED);
+                }
+                activity.shotTaken(madeShot, isThree);
                 mCanvas.drawCircle(x, y, dotRadius, mPaint);
                 invalidate();
                 break;
@@ -68,6 +117,19 @@ public class CourtView extends ImageView implements View.OnTouchListener{
                 break;
 
         }
-        return true;
+        return false;
+    }
+
+    public boolean isThreePointer(int pixel)
+    {
+        int red = Color.red(pixel);
+        int green = Color.green(pixel);
+        int blue = Color.blue(pixel);
+
+        if (red == 195 && green == 195 && blue == 195)
+        {
+            return true;
+        }
+        return false;
     }
 }

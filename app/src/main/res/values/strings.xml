@@ -1,16 +1,8 @@
 <resources>
     <string name="app_name">SquadUp</string>
-    <string name="teamAQ1">14</string>
-    <string name="teamAQ2">12</string>
-    <string name="teamAQ3">10</string>
-    <string name="teamAQ4"></string>
-    <string name="teamATotal"></string>
-    <string name="teamBQ1">14</string>
-    <string name="teamBQ2">15</string>
-    <string name="teamBQ3">2</string>
-    <string name="teamBQ4"></string>
-    <string name="teamBTotal"></string>
 
+    <string name="teamAName">Team A</string>
+    <string name="teamBName">Team B</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
