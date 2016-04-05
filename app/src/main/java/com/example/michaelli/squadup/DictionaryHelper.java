@@ -14,8 +14,8 @@ public class DictionaryHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String DICTIONARY_TABLE_NAME = "dictionary";
     private static final String DATABASE_NAME = "SquadUp";
-    private static final String DICTIONARY_GAMES_CREATE = "CREATE TABLE GAMES (UID int, Opponent varchar(255), PlayerID int, HomeScore int, OpponentScore int, Date datetime, Win bool);";
-    private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(UID int, points int, numGames int);";
+    private static final String DICTIONARY_GAMES_CREATE = "CREATE TABLE GAMES (_id INTEGER PRIMARY KEY AUTOINCREMENT, Opponent varchar(255), PlayerID int, HomeScore int, OpponentScore int, Date datetime, Win bool);";
+    private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(_id INTEGER PRIMARY KEY AUTOINCREMENT, points int, numGames int);";
 
     DictionaryHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,6 +27,14 @@ public class DictionaryHelper extends SQLiteOpenHelper {
         db.execSQL(DICTIONARY_PLAYER_CREATE);
         Log.d("Dictionary Helper", "Creating database");
 
+    }
+
+    public void insertGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     @Override

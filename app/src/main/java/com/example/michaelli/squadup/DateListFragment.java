@@ -1,6 +1,7 @@
 package com.example.michaelli.squadup;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,16 +14,17 @@ import com.bailey.mobile.squadup.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DateList.OnFragmentInteractionListener} interface
+ * {@link DateListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DateList#newInstance} factory method to
+ * Use the {@link DateListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DateList extends Fragment {
+public class DateListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    DictionaryHelper dictionaryHelper;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -30,8 +32,8 @@ public class DateList extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public DateList() {
-        // Required empty public constructor
+    public DateListFragment() {
+            // Required empty public constructor
     }
 
     /**
@@ -43,8 +45,8 @@ public class DateList extends Fragment {
      * @return A new instance of fragment DateList.
      */
     // TODO: Rename and change types and number of parameters
-    public static DateList newInstance(String param1, String param2) {
-        DateList fragment = new DateList();
+    public static DateListFragment newInstance(String param1, String param2) {
+        DateListFragment fragment = new DateListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,13 +61,15 @@ public class DateList extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        dictionaryHelper = new DictionaryHelper(this.getContext());
+        SQLiteDatabase db = dictionaryHelper.getWritableDatabase();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_date_list, container, false);
+        return inflater.inflate(R.layout.game_history, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
