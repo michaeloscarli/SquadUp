@@ -1,8 +1,18 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:icon">@drawable/logo</item>
-        <item name="logo">@drawable/logo</item>
+        <item name="android:icon">@drawable/symbol</item>
+        <item name="logo">@drawable/symbol</item>
         <item name="displayOptions">useLogo|showHome|showTitle</item>
     </style>
+
+    <style name="MyCustomTheme" parent="@android:style/Theme.Holo.Light">
+            <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
+        </style>
+
+    <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+            <item name="android:background">#FFAD6F</item>
+            <item name="android:icon">@drawable/symbol</item>
+        </style>
+
 </resources>

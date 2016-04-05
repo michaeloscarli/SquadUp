@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout2">
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/intro_compass"
+        android:id="@+id/intro_compass"
+        android:alpha="1.0"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/finish"
+        android:text="Finish"
+        android:id="@+id/intro_finish_button"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:alpha="1.0"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="68dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Observe your friends"
+        android:id="@+id/textView6"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="and find new players to follow"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
