@@ -14,8 +14,27 @@ public class DictionaryHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     private static final String DICTIONARY_TABLE_NAME = "dictionary";
     private static final String DATABASE_NAME = "SquadUp";
-    private static final String DICTIONARY_GAMES_CREATE = "CREATE TABLE GAMES (_id INTEGER PRIMARY KEY AUTOINCREMENT, Opponent varchar(255), PlayerID int, HomeScore int, OpponentScore int, Date datetime, Win bool);";
-    private static final String DICTIONARY_PLAYER_CREATE = "CREATE TABLE PLAYERS(_id INTEGER PRIMARY KEY AUTOINCREMENT, points int, numGames int);";
+    private static final String DICTIONARY_GAMES_CREATE =
+            "CREATE TABLE GAMES " +
+                    "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "Opponent varchar(255), " +
+                    "HomeQ1 int default 0, " +
+                    "HomeQ2 int default 0, " +
+                    "HomeQ3 int default 0, " +
+                    "HomeQ4 int default 0, " +
+                    "HomeScore int default 0, " +
+                    "OpponentQ1 int default 0, " +
+                    "OpponentQ2 int default 0, " +
+                    "OpponentQ3 int default 0, " +
+                    "OpponentQ4 int default 0, " +
+                    "OpponentScore int default 0, " +
+                    "Date datetime, " +
+                    "Win bool default false);";
+    private static final String DICTIONARY_PLAYER_CREATE =
+            "CREATE TABLE PLAYERS " +
+                    "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "points int, " +
+                    "numGames int);";
 
     DictionaryHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,7 +48,26 @@ public class DictionaryHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+//    public void insertGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.beginTransaction();
+//
+//        db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
+//        db.setTransactionSuccessful();
+//        db.endTransaction();
+//    }
+
+    public void insertGame(String Opponent){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        String sql = "INSERT INTO GAMES (Opponent, Date) " +
+                "VALUES('" + Opponent + "'," + "datetime());";
+        db.execSQL(sql);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void insertNewGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
         db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
