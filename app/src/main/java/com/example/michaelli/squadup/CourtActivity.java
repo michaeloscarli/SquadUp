@@ -7,9 +7,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,24 +70,30 @@ public class CourtActivity extends Activity {
     private ArrayList<Point> missedShots = null;
 
     private DictionaryHelper dh;
-    private SQLiteDatabase db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         Bundle passedData = getIntent().getExtras();
-        if (passedData!=null){
+        if (passedData != null)
+        {
             opponentName = passedData.getString("opponentName");
-            if (opponentName!=null){ //start a new game
+            if (opponentName != null)
+            { //start a new game
                 setContentView(R.layout.capture_actions);
                 initializeGame();
                 newGame(opponentName);
             }
-            else { //old game - gameID is given, go to summary portrait view
+            else
+            { //old game - gameID is given, go to summary portrait view
                 gameID = passedData.getInt("gameID");
                 setContentView(R.layout.summary);
+                View backgroundimage = findViewById(R.id.summary_background);
+                Drawable background = backgroundimage.getBackground();
+                background.setAlpha(80);
+
                 initializeGame();
                 readDatabase();
             }
@@ -95,17 +101,6 @@ public class CourtActivity extends Activity {
 
         setReferencesInLayout();
         updateScoreBoard();
-
-//        updateScoreBoard();
-
-//
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.summary);
-//        View backgroundimage = findViewById(R.id.summary_background);
-//        Drawable background = backgroundimage.getBackground();
-//        background.setAlpha(80);
-
-
     }
 
     public void onBackPressed()
@@ -534,6 +529,7 @@ public class CourtActivity extends Activity {
                 updateScoreBoard();
                 updateDatabase();
 
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.summary);
 
                 readDatabase();

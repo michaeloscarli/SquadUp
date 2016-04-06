@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">SquadUp</string>
 
-    <string name="teamAName">Team A</string>
+    <string name="teamAName">My Team</string>
     <string name="teamBName">Team B</string>
 
     <string name="placeholder">PH</string>
+    <string name="myplayer">My Player</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

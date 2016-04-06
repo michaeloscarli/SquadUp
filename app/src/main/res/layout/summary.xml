@@ -157,7 +157,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamAName"
             android:id="@+id/teamA"
             android:textColor="#FFFFFF"/>
 
@@ -223,7 +223,7 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/teamBName"
             android:id="@+id/teamB"
             android:textColor="#FFFFFF"/>
 
@@ -346,16 +346,6 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="FT"
-            android:textColor="#FFFFFF"
-            />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="FG"
             android:textColor="#FFFFFF"/>
 
@@ -394,18 +384,8 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
+            android:text="@string/myplayer"
             android:id="@+id/playerName"
-            android:textColor="#FFFFFF"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/placeholder"
-            android:id="@+id/FT"
-            android:layout_weight="0.1"
             android:textColor="#FFFFFF"/>
 
         <TextView
