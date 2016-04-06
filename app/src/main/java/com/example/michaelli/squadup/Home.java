@@ -11,9 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.bailey.mobile.squadup.R;
 
-/**
- * Created by michaelli on 3/29/16.
- */
 public class Home extends Activity{
     DictionaryHelper dictionaryHelper;
 

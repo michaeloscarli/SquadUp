@@ -25,9 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import com.bailey.mobile.squadup.R;
 
-/**
- * Created by jackiehuey on 4/6/16.
- */
 
 public class frag2 extends Activity{
 

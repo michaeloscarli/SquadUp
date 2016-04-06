@@ -1,8 +1,5 @@
 package com.example.michaelli.squadup;
 
-/**
- * Created by Jason on 3/30/2016.
- */
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -2,12 +2,12 @@ package com.example.michaelli.squadup;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,11 +19,6 @@ import android.widget.Toast;
 
 import com.bailey.mobile.squadup.R;
 
-import java.util.ArrayList;
-
-/**
- * Created by Jason on 4/4/2016.
- */
 public class CourtActivity extends Activity {
 
     private int quarter;
@@ -66,11 +61,7 @@ public class CourtActivity extends Activity {
     private int complete;
     private int win;
 
-    private ArrayList<Point> madeShots = null;
-    private ArrayList<Point> missedShots = null;
-
     private DictionaryHelper dh;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +83,7 @@ public class CourtActivity extends Activity {
                 setContentView(R.layout.summary);
                 View backgroundimage = findViewById(R.id.summary_background);
                 Drawable background = backgroundimage.getBackground();
-                background.setAlpha(80);
+                background.setAlpha(90);
 
                 initializeGame();
                 readDatabase();
@@ -131,7 +122,6 @@ public class CourtActivity extends Activity {
 
         setReferencesInLayout();
         updateScoreBoard();
-
     }
 
     private void setReferencesInLayout()
@@ -172,9 +162,6 @@ public class CourtActivity extends Activity {
             opponentScores[i] = 0;
             playerStats[i] = 0;
         }
-
-        madeShots = new ArrayList<Point>();
-        missedShots = new ArrayList<Point>();
 
         complete = 0;
         win = 0;
@@ -313,8 +300,6 @@ public class CourtActivity extends Activity {
         }
 
         setQuarterBold();
-
-
     }
 
     public void setQuarterBold()
@@ -430,88 +415,12 @@ public class CourtActivity extends Activity {
         updateDatabase();
     }
 
-//    public void endQuarter(View view) {
-//        Button b = (Button) view.findViewById(R.id.endQuarter);
-//        switch (quarter) {
-//            case 4:
-//
-//
-////                TODO - END THE GAME
-//
-//                complete = 1;
-//                if (homeScores[4] > opponentScores[4])
-//                {
-//                    win = 1;
-//                }
-//
-//                updateScoreBoard();
-//                updateDatabase();
-//
-//
-//                Q4.setTypeface(null, Typeface.ITALIC);
-//                teamAQ4.setTypeface(null, Typeface.ITALIC);
-//                teamBQ4.setTypeface(null, Typeface.ITALIC);
-//
-//                T.setTypeface(null, Typeface.BOLD);
-//                teamATotal.setTypeface(null, Typeface.BOLD);
-//                teamBTotal.setTypeface(null, Typeface.BOLD);
-//
-//                quarter++;
-//
-//                setContentView(R.layout.summary);
-//
-//
-//                break;
-//
-//
-//            case 3:
-//                b.setText("End Game");
-//
-//                Q3.setTypeface(null, Typeface.ITALIC);
-//                teamAQ3.setTypeface(null, Typeface.ITALIC);
-//                teamBQ3.setTypeface(null, Typeface.ITALIC);
-//
-//                Q4.setTypeface(null, Typeface.BOLD);
-//                teamAQ4.setTypeface(null, Typeface.BOLD);
-//                teamBQ4.setTypeface(null, Typeface.BOLD);
-//
-//                quarter++;
-//                break;
-//            case 2:
-//                Q2.setTypeface(null, Typeface.ITALIC);
-//                teamAQ2.setTypeface(null, Typeface.ITALIC);
-//                teamBQ2.setTypeface(null, Typeface.ITALIC);
-//
-//                Q3.setTypeface(null, Typeface.BOLD);
-//                teamAQ3.setTypeface(null, Typeface.BOLD);
-//                teamBQ3.setTypeface(null, Typeface.BOLD);
-//
-//                quarter++;
-//                break;
-//            case 1:
-//                Q1.setTypeface(null, Typeface.ITALIC);
-//                teamAQ1.setTypeface(null, Typeface.ITALIC);
-//                teamBQ1.setTypeface(null, Typeface.ITALIC);
-//
-//                Q2.setTypeface(null, Typeface.BOLD);
-//                teamAQ2.setTypeface(null, Typeface.BOLD);
-//                teamBQ2.setTypeface(null, Typeface.BOLD);
-//
-//                quarter++;
-//                break;
-//            default:
-//                quarter++;
-//                break;
-//        }
-//    }
-
     public void endQuarter(View view) {
         Button b = (Button) view.findViewById(R.id.endQuarter);
         quarter++;
         setQuarterBold();
 
-        switch (quarter)
-        {
+        switch (quarter) {
             case 1:
             case 2:
             case 3:
@@ -520,14 +429,11 @@ public class CourtActivity extends Activity {
                 b.setText("End Game");
                 break;
             default:
+
                 complete = 1;
-                if (homeScores[4] > opponentScores[4])
-                {
+                if (homeScores[4] > opponentScores[4]) {
                     win = 1;
                 }
-
-                updateScoreBoard();
-                updateDatabase();
 
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.summary);
@@ -535,10 +441,10 @@ public class CourtActivity extends Activity {
                 readDatabase();
                 setReferencesInLayout();
                 updateScoreBoard();
-
                 break;
         }
     }
+
 
 
     public void teamAPlus1(View view)
@@ -552,21 +458,4 @@ public class CourtActivity extends Activity {
         Resources res = getResources();
         updateInternalScores(false, res.getInteger(R.integer.freeThrow));
     }
-
-    public void addPoint(Point p, boolean made)
-    {
-        if (made)
-        {
-            madeShots.add(p);
-        }
-        else
-        {
-            missedShots.add(p);
-        }
-    }
-
-
-
-
-
 }

@@ -1,8 +1,5 @@
 package com.example.michaelli.squadup;
 
-/**
- * Created by Connie Fan on 4/5/2016.
- */
 import android.app.DialogFragment;
 import android.net.Uri;
 import android.os.Bundle;
@@ -60,7 +57,6 @@ public class mainEmail extends Activity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 sendEmail();
-                // after sending the email, clear the fields
                 recipient.setText("");
                 subject.setText("");
                 body.setText("");

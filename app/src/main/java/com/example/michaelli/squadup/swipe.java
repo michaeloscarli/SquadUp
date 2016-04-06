@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.content.Context;
 
-/**
- * Created by jackiehuey on 4/6/16.
- */
 public class swipe implements OnTouchListener{
 
     private GestureDetector gesture;

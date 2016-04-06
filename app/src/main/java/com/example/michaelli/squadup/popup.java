@@ -12,9 +12,6 @@ import android.widget.EditText;
 
 import com.bailey.mobile.squadup.R;
 
-/**
- * Created by jackiehuey on 4/5/16.
- */
     public class popup extends DialogFragment {
 
         private EditText opponent_name;

@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 
 import com.bailey.mobile.squadup.R;
 
-/**
- * Created by Jason on 4/6/2016.
- */
 public class SummaryFragment extends Fragment {
 
     @Override
