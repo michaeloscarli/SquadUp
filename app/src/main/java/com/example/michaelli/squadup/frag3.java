@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.gesture.Gesture;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,35 +14,49 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import com.bailey.mobile.squadup.R;
-import android.view.GestureDetector;
-import android.content.Context;
-import android.view.GestureDetector.SimpleOnGestureListener;
 
 /**
  * Created by jackiehuey on 4/6/16.
  */
-public class IntroductoryActivity extends Activity{
 
+public class frag3 extends Activity{
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.home);
+        this.setContentView(R.layout.fragment_intro_page_3);
 
-        RelativeLayout myView = (RelativeLayout) this.findViewById(R.id.home);
+        RelativeLayout myView = (RelativeLayout) this.findViewById(R.id.fragment3);
 
-        myView.setOnTouchListener(new swipe(IntroductoryActivity.this) {
+        myView.setOnTouchListener(new swipe(frag3.this) {
 
             public void onSwipeLeft() {
-                Intent intent = new Intent(IntroductoryActivity.this, frag1.class);
+                Intent intent = new Intent(frag3.this, frag4.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+
+            public void onSwipeRight() {
+                Intent intent = new Intent(frag3.this, frag2.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
 
         });
     }
 }
+
+
+
+

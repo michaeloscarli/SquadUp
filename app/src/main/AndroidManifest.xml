@@ -7,11 +7,38 @@
         android:label="Squad Up"
         android:theme="@style/MyCustomTheme">
 
-        <activity android:name="com.example.michaelli.squadup.Login">
+        <activity android:name="com.example.michaelli.squadup.IntroductoryActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.michaelli.squadup.frag1"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.example.michaelli.squadup.frag2"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.example.michaelli.squadup.frag3"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="com.example.michaelli.squadup.frag4"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <activity android:name="com.example.michaelli.squadup.Login"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+
         </activity>
 <!--
         <activity android:name="com.example.michaelli.squadup.Login"
@@ -23,14 +50,20 @@
             &lt;!&ndash;</intent-filter>&ndash;&gt;
         </activity>-->
 
+
+        <activity android:name="com.example.michaelli.squadup.GameHistory">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
         <activity android:name="com.example.michaelli.squadup.CourtActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape">
 
         </activity>
-        <activity android:name="com.example.michaelli.squadup.GameHistory">
 
-        </activity>
 
 
     </application>
