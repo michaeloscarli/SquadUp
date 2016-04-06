@@ -13,7 +13,7 @@ public class IntroductoryActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.home);
         }
     public Fragment getItem(int position) {
             switch(position) {

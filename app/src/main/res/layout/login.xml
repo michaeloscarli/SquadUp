@@ -2,9 +2,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:screenOrientation="portrait"
         tools:context="com.example.michaelli.squadup.MainActivity"
-        android:background="@drawable/basketballcourt">
-
+        android:background="@drawable/basketballcourt"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+    >
 
     <TextView
             android:layout_width="wrap_content"
@@ -38,9 +40,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:background="@drawable/logo"
-        android:layout_marginTop="73dp"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_above="@+id/textView2L"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,16 +50,17 @@
         android:text="Let's Get Started!"
         android:textColor="#FFF"
         android:id="@+id/textView2L"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/editText5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="85dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
+        android:hint="Password"
         android:id="@+id/editText4"
-        android:textColor="#FFF"
         android:layout_above="@+id/intro_login_button"
         android:layout_alignStart="@+id/intro_login_button"
         android:layout_alignEnd="@+id/btnFindMe" />
@@ -66,13 +68,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText5"
         android:layout_above="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
-        android:layout_alignEnd="@+id/editText4" />
+        android:layout_alignEnd="@+id/editText4"
+        android:hint="Username" />
 
 
 </RelativeLayout>
