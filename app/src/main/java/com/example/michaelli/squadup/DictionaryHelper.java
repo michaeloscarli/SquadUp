@@ -1,5 +1,7 @@
 package com.example.michaelli.squadup;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
@@ -28,8 +30,15 @@ public class DictionaryHelper extends SQLiteOpenHelper {
                     "OpponentQ3 int default 0, " +
                     "OpponentQ4 int default 0, " +
                     "OpponentScore int default 0, " +
+                    "PlayerMadeFG int default 0, " +
+                    "PlayerTotalFG int default 0, " +
+                    "PlayerMade3PT int default 0, " +
+                    "PlayerTotal3PT int default 0, " +
+                    "PlayerTotalPTS int default 0, " +
                     "Date datetime, " +
+                    "Complete bool default false," +
                     "Win bool default false);";
+
     private static final String DICTIONARY_PLAYER_CREATE =
             "CREATE TABLE PLAYERS " +
                     "(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -48,32 +57,48 @@ public class DictionaryHelper extends SQLiteOpenHelper {
 
     }
 
-//    public void insertGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+//    public void insertGame(String Opponent) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        db.beginTransaction();
-//
-//        db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
+//        String sql = "INSERT INTO GAMES (Opponent, Date) " +
+//                "VALUES('" + Opponent + "'," + "datetime());";
+//        db.execSQL(sql);
 //        db.setTransactionSuccessful();
 //        db.endTransaction();
 //    }
 
-    public void insertGame(String Opponent){
+    public void insertGame(String opponent) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.beginTransaction();
-        String sql = "INSERT INTO GAMES (Opponent, Date) " +
-                "VALUES('" + Opponent + "'," + "datetime());";
-        db.execSQL(sql);
-        db.setTransactionSuccessful();
-        db.endTransaction();
+        ContentValues values = new ContentValues();
+
+        values.put("Opponent", opponent);
+        values.put("Date", "datetime()");
+        db.insert("GAMES", null, values);
+        db.close();
+//
+//
+//
+//        String sql = "INSERT INTO GAMES (Opponent, Date) " +
+//                "VALUES('" + opponent + "'," + "datetime());";
+//        db.execSQL(sql);
+//        db.setTransactionSuccessful();
+//        db.endTransaction();
     }
 
-    public void insertNewGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+    public void updateGame(ContentValues values, int gameID)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.beginTransaction();
-        db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
-        db.setTransactionSuccessful();
-        db.endTransaction();
+        db.update("GAMES", values, "_id=" + gameID, null);
+        db.close();
     }
+
+//    public void insertNewGame(String Opponent, int PlayerID, int HomeScore, int OpponentScore, int win){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.beginTransaction();
+//        db.execSQL("INSERT INTO GAMES (Opponent, PlayerID, HomeScore, OpponentScore, Date, Win) VALUES('" + Opponent + "'," + PlayerID + "," + HomeScore + "," + OpponentScore + ", datetime()," + win + ");");
+//        db.setTransactionSuccessful();
+//        db.endTransaction();
+//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase _db, int _oldVersion, int _newVersion)
@@ -89,4 +114,17 @@ public class DictionaryHelper extends SQLiteOpenHelper {
         // Create a new one.
         onCreate(_db);
     }
+
+    public Cursor getSelectCursor(String query)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor= db.rawQuery(query, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                Log.d("DEBUG", cursor.getString(0) + " " + cursor.getString((cursor.getColumnIndex("HomeScore"))));
+            }
+        }
+        return db.rawQuery(query, null);
+    }
+
 }

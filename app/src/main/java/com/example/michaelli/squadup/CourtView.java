@@ -95,23 +95,25 @@ public class CourtView extends ImageView implements View.OnTouchListener{
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
+                activity.shotTaken(madeShot, isThree);
                 if (madeShot)
                 {
                     setColor(Color.GREEN);
                     if (isThree)
                     {
-                        activity.updateScores(true, res.getInteger(R.integer.threePointer));
+                        activity.updateInternalScores(true, res.getInteger(R.integer.threePointer));
                     }
                     else
                     {
-                        activity.updateScores(true, res.getInteger(R.integer.twoPointer));
+                        activity.updateInternalScores(true, res.getInteger(R.integer.twoPointer));
                     }
                 }
                 else
                 {
                     setColor(Color.RED);
                 }
-                activity.shotTaken(madeShot, isThree);
+
+                activity.updateDatabase();
                 mCanvas.drawCircle(x, y, dotRadius, mPaint);
                 invalidate();
                 break;

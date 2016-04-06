@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -327,7 +328,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="2PT" />
+            android:text="FG" />
 
         <TextView
             android:layout_width="0dp"
@@ -343,7 +344,7 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Total" />
+            android:text="PTS" />
 
     </LinearLayout>
 
@@ -380,7 +381,7 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
-            android:id="@+id/twoPT"
+            android:id="@+id/FG"
             android:layout_weight="0.1" />
 
         <TextView
