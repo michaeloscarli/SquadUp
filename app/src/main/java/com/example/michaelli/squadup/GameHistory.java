@@ -36,7 +36,6 @@ public class GameHistory extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_history);
         dictionaryHelper = new DictionaryHelper(this);
-        dictionaryHelper.insertGame("Jason");
         SQLiteDatabase db = dictionaryHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM GAMES;",null);
         populateListView();
@@ -68,7 +67,7 @@ public class GameHistory extends Activity{
                 int gameID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
                 Log.d("Position", Integer.toString(gameID));
 
-                Intent i = new Intent(getBaseContext(), Login.class);
+                Intent i = new Intent(getBaseContext(), CourtActivity.class);
                 i.putExtra("gameID", gameID);
                 startActivity(i);
             }
