@@ -46,6 +46,8 @@ public class CourtActivity extends Activity {
     private TextView threePT;
     private TextView PTS;
 
+    private TextView gameDate;
+
     private int homeScores[] = null;
     private int opponentScores[] = null;
     private int playerStats[] = null;
@@ -61,11 +63,14 @@ public class CourtActivity extends Activity {
     private int complete;
     private int win;
 
+    private String date;
+
     private DictionaryHelper dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.capture_actions);
 
         Bundle passedData = getIntent().getExtras();
         if (passedData != null)
@@ -81,9 +86,9 @@ public class CourtActivity extends Activity {
             { //old game - gameID is given, go to summary portrait view
                 gameID = passedData.getInt("gameID");
                 setContentView(R.layout.summary);
-                View backgroundimage = findViewById(R.id.summary_background);
-                Drawable background = backgroundimage.getBackground();
-                background.setAlpha(90);
+//                View backgroundimage = findViewById(R.id.summary_background);
+//                Drawable background = backgroundimage.getBackground();
+//                background.setAlpha(90);
 
                 initializeGame();
                 readDatabase();
@@ -124,6 +129,36 @@ public class CourtActivity extends Activity {
         updateScoreBoard();
     }
 
+    public void readDatabase()
+    {
+        SQLiteDatabase db = dh.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id=" + gameID, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                opponentName = cursor.getString(cursor.getColumnIndex("Opponent"));
+                homeScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ1")));
+                homeScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ2")));
+                homeScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ3")));
+                homeScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ4")));
+                homeScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeScore")));
+                opponentScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ1")));
+                opponentScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ2")));
+                opponentScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ3")));
+                opponentScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ4")));
+                opponentScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentScore")));
+                playerStats[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMadeFG")));
+                playerStats[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalFG")));
+                playerStats[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMade3PT")));
+                playerStats[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotal3PT")));
+                playerStats[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalPTS")));
+                date = cursor.getString(cursor.getColumnIndex("Date"));
+                complete = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Complete")));
+                win = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Win")));
+            }while(cursor.moveToNext());
+        }
+    }
+
     private void setReferencesInLayout()
     {
         teamAQ1 = (TextView) this.findViewById(R.id.teamAQ1);
@@ -146,6 +181,8 @@ public class CourtActivity extends Activity {
         FG = (TextView) this.findViewById(R.id.FG);
         threePT = (TextView) this.findViewById(R.id.threePT);
         PTS = (TextView) this.findViewById(R.id.totalPTS);
+
+        gameDate = (TextView) this.findViewById(R.id.gameDate);
     }
 
     private void initializeGame()
@@ -234,35 +271,7 @@ public class CourtActivity extends Activity {
     }
 
 
-    public void readDatabase()
-    {
-        SQLiteDatabase db = dh.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id=" + gameID, null);
 
-        if(cursor.moveToFirst()){
-            do{
-                opponentName = cursor.getString(cursor.getColumnIndex("Opponent"));
-                homeScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ1")));
-                homeScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ2")));
-                homeScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ3")));
-                homeScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ4")));
-                homeScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeScore")));
-                opponentScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ1")));
-                opponentScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ2")));
-                opponentScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ3")));
-                opponentScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ4")));
-                opponentScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentScore")));
-                playerStats[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMadeFG")));
-                playerStats[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalFG")));
-                playerStats[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMade3PT")));
-                playerStats[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotal3PT")));
-                playerStats[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalPTS")));
-                complete = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Complete")));
-                win = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Win")));
-            }while(cursor.moveToNext());
-        }
-
-    }
 
     public void updateScoreBoard()
     {
@@ -297,6 +306,10 @@ public class CourtActivity extends Activity {
         if (PTS != null)
         {
             PTS.setText(Integer.toString(playerStats[4]));
+        }
+        if (gameDate != null)
+        {
+            gameDate.setText(date);
         }
 
         setQuarterBold();
