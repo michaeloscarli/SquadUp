@@ -57,7 +57,6 @@ public class mainEmail extends Activity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 sendEmail();
-                // after sending the email, clear the fields
                 recipient.setText("");
                 subject.setText("");
                 body.setText("");

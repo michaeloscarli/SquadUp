@@ -2,6 +2,7 @@ package com.example.michaelli.squadup;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -96,7 +97,22 @@ public class CourtActivity extends Activity {
 //        Drawable background = backgroundimage.getBackground();
 //        background.setAlpha(80);
 
-
+        Button shareButton = (Button) findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), mainEmail.class);
+                startActivity(i);
+            }
+        });
+        Button homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), GameHistory.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void onBackPressed()

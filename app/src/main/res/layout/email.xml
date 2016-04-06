@@ -3,14 +3,24 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-    android:gravity="center_vertical">
+        android:background="@drawable/basketballcourt"
+        android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:id="@+id/imageView5"
+        android:layout_gravity="center_horizontal" />
 
     <EditText
             android:id="@+id/recipient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFF"
             android:ems="10"
             android:inputType="textEmailAddress"
+            android:textColorHint="#FFF"
             android:hint="bestie@example.com"
             android:layout_gravity="center" />
 
@@ -20,6 +30,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Subject"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
             android:layout_gravity="center" />
 
         <EditText
@@ -27,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
             android:hint="Message body"
             android:layout_gravity="center" />
 
