@@ -1,6 +1,7 @@
 package com.example.michaelli.squadup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -43,14 +44,11 @@ public class GameHistory extends Activity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) simpleCursorAdapter.getItem(position);
                 int gameID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
-                Log.d("Position",Integer.toString(gameID));
-//                User user = adapter.getItem(position);
-//                Bundle b = new Bundle();
-//                b.putParcelable("user", user);
-//
-//                Intent i = new Intent(context, OtherActivity.class);
-//                i.putExtra("bundle", b);
-//                startActivity(i);
+                Log.d("Position", Integer.toString(gameID));
+
+                Intent i = new Intent(getBaseContext(), Login.class);
+                i.putExtra("gameID", gameID);
+                startActivity(i);
             }
         });
     }
