@@ -67,7 +67,7 @@ public class GameHistory extends Activity{
                 int gameID = Integer.parseInt(cursor.getString(cursor.getColumnIndex("_id")));
                 Log.d("Position", Integer.toString(gameID));
 
-                Intent i = new Intent(getBaseContext(), Login.class);
+                Intent i = new Intent(getBaseContext(), CourtActivity.class);
                 i.putExtra("gameID", gameID);
                 startActivity(i);
             }

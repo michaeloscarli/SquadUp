@@ -76,11 +76,13 @@ public class CourtActivity extends Activity {
             opponentName = passedData.getString("opponentName");
             if (opponentName!=null){ //start a new game
                 setContentView(R.layout.capture_actions);
+                initializeGame();
                 newGame(opponentName);
             }
             else { //old game - gameID is given, go to summary portrait view
-                gameID = Integer.parseInt(passedData.getString("gameID"));
+                gameID = passedData.getInt("gameID");
                 setContentView(R.layout.summary);
+                initializeGame();
                 readDatabase();
             }
         }
@@ -154,7 +156,7 @@ public class CourtActivity extends Activity {
         PTS = (TextView) this.findViewById(R.id.totalPTS);
     }
 
-    private void newGame(String opponentName)
+    private void initializeGame()
     {
         quarter = 1;
 
@@ -182,7 +184,10 @@ public class CourtActivity extends Activity {
         win = 0;
 
         dh = new DictionaryHelper(this);
+    }
 
+    private void newGame(String opponentName)
+    {
         dh.insertGame(opponentName);
 
         Cursor cursor = dh.getReadableDatabase().rawQuery("SELECT max(_id) FROM GAMES;", null);
