@@ -1,7 +1,9 @@
 package com.example.michaelli.squadup;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,10 @@ import com.bailey.mobile.squadup.R;
             startGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                /*go to jason's page*/
+                    Intent i = new Intent(getActivity(),CourtActivity.class);
+                    Log.d("Test", opponent_name.getText().toString());
+//                    i.putExtra("opponentName",opponent_name.getText().toString());
+                    startActivity(i);
                 }
             });
 
