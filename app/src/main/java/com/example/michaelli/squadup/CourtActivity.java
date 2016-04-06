@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bailey.mobile.squadup.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by Jason on 4/4/2016.
@@ -49,7 +53,6 @@ public class CourtActivity extends Activity {
 
     private int homeScores[] = null;
     private int opponentScores[] = null;
-
     private int playerStats[] = null;
     /*
         playerStats[0] = madeFG
@@ -62,6 +65,9 @@ public class CourtActivity extends Activity {
     private int gameID;
     private int complete;
     private int win;
+
+    private ArrayList<Point> madeShots = null;
+    private ArrayList<Point> missedShots = null;
 
     private DictionaryHelper dh;
     private SQLiteDatabase db;
@@ -130,6 +136,7 @@ public class CourtActivity extends Activity {
 
         setReferencesInLayout();
         updateScoreBoard();
+
     }
 
     private void setReferencesInLayout()
@@ -160,15 +167,6 @@ public class CourtActivity extends Activity {
     {
         quarter = 1;
 
-        setReferencesInLayout();
-
-        T.setTypeface(null, Typeface.BOLD);
-        teamATotal.setTypeface(null, Typeface.BOLD);
-        teamBTotal.setTypeface(null, Typeface.BOLD);
-        Q1.setTypeface(null, Typeface.BOLD);
-        teamAQ1.setTypeface(null, Typeface.BOLD);
-        teamBQ1.setTypeface(null, Typeface.BOLD);
-
         homeScores = new int[5];
         opponentScores = new int[5];
         playerStats = new int[5];
@@ -180,14 +178,23 @@ public class CourtActivity extends Activity {
             playerStats[i] = 0;
         }
 
+        madeShots = new ArrayList<Point>();
+        missedShots = new ArrayList<Point>();
+
         complete = 0;
         win = 0;
+
+        setReferencesInLayout();
 
         dh = new DictionaryHelper(this);
     }
 
     private void newGame(String opponentName)
     {
+        Q1.setTypeface(null, Typeface.BOLD);
+        teamAQ1.setTypeface(null, Typeface.BOLD);
+        teamBQ1.setTypeface(null, Typeface.BOLD);
+
         dh.insertGame(opponentName);
 
         Cursor cursor = dh.getReadableDatabase().rawQuery("SELECT max(_id) FROM GAMES;", null);
@@ -268,6 +275,8 @@ public class CourtActivity extends Activity {
                 playerStats[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMade3PT")));
                 playerStats[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotal3PT")));
                 playerStats[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalPTS")));
+                complete = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Complete")));
+                win = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Win")));
             }while(cursor.moveToNext());
         }
 
@@ -307,9 +316,59 @@ public class CourtActivity extends Activity {
         {
             PTS.setText(Integer.toString(playerStats[4]));
         }
-//        FG = (TextView) this.findViewById(R.id.FG);
-//        threePT = (TextView) this.findViewById(R.id.threePT);
-//        PTS = (TextView) this.findViewById(R.id.T);
+
+        setQuarterBold();
+
+
+    }
+
+    public void setQuarterBold()
+    {
+        Q1.setTypeface(null, Typeface.NORMAL);
+        Q2.setTypeface(null, Typeface.NORMAL);
+        Q3.setTypeface(null, Typeface.NORMAL);
+        Q4.setTypeface(null, Typeface.NORMAL);
+        T.setTypeface(null, Typeface.NORMAL);
+        teamAQ1.setTypeface(null, Typeface.NORMAL);
+        teamAQ2.setTypeface(null, Typeface.NORMAL);
+        teamAQ3.setTypeface(null, Typeface.NORMAL);
+        teamAQ4.setTypeface(null, Typeface.NORMAL);
+        teamATotal.setTypeface(null, Typeface.NORMAL);
+        teamBQ1.setTypeface(null, Typeface.NORMAL);
+        teamBQ2.setTypeface(null, Typeface.NORMAL);
+        teamBQ3.setTypeface(null, Typeface.NORMAL);
+        teamBQ4.setTypeface(null, Typeface.NORMAL);
+        teamBTotal.setTypeface(null, Typeface.NORMAL);
+
+        switch (quarter)
+        {
+            case 1:
+                Q1.setTypeface(null, Typeface.BOLD);
+                teamAQ1.setTypeface(null, Typeface.BOLD);
+                teamBQ1.setTypeface(null, Typeface.BOLD);
+                break;
+            case 2:
+                Q2.setTypeface(null, Typeface.BOLD);
+                teamAQ2.setTypeface(null, Typeface.BOLD);
+                teamBQ2.setTypeface(null, Typeface.BOLD);
+                break;
+            case 3:
+                Q3.setTypeface(null, Typeface.BOLD);
+                teamAQ3.setTypeface(null, Typeface.BOLD);
+                teamBQ3.setTypeface(null, Typeface.BOLD);
+                break;
+            case 4:
+                Q4.setTypeface(null, Typeface.BOLD);
+                teamAQ4.setTypeface(null, Typeface.BOLD);
+                teamBQ4.setTypeface(null, Typeface.BOLD);
+                break;
+
+            default:
+                T.setTypeface(null, Typeface.BOLD);
+                teamATotal.setTypeface(null, Typeface.BOLD);
+                teamBTotal.setTypeface(null, Typeface.BOLD);
+                break;
+        }
     }
 
     public void updateDatabase() {
@@ -384,80 +443,88 @@ public class CourtActivity extends Activity {
 //
 ////                TODO - END THE GAME
 //
-//
-//
-//                complete = true;
+//                complete = 1;
 //                if (homeScores[4] > opponentScores[4])
 //                {
-//                    win = true;
+//                    win = 1;
 //                }
 //
 //                updateScoreBoard();
 //                updateDatabase();
 //
 //
+//                Q4.setTypeface(null, Typeface.ITALIC);
+//                teamAQ4.setTypeface(null, Typeface.ITALIC);
+//                teamBQ4.setTypeface(null, Typeface.ITALIC);
 //
-//
-//                Q4.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ4.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ4.setBackgroundResource(R.color.inactiveQuarter);
-//
-//                T.setBackgroundResource(R.color.activeQuarter);
-//                teamATotal.setBackgroundResource(R.color.activeQuarter);
-//                teamBTotal.setBackgroundResource(R.color.activeQuarter);
+//                T.setTypeface(null, Typeface.BOLD);
+//                teamATotal.setTypeface(null, Typeface.BOLD);
+//                teamBTotal.setTypeface(null, Typeface.BOLD);
 //
 //                quarter++;
+//
+//                setContentView(R.layout.summary);
+//
+//
 //                break;
 //
 //
 //            case 3:
 //                b.setText("End Game");
 //
-//                Q3.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ3.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ3.setBackgroundResource(R.color.inactiveQuarter);
+//                Q3.setTypeface(null, Typeface.ITALIC);
+//                teamAQ3.setTypeface(null, Typeface.ITALIC);
+//                teamBQ3.setTypeface(null, Typeface.ITALIC);
 //
-//                Q4.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ4.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ4.setBackgroundResource(R.color.activeQuarter);
+//                Q4.setTypeface(null, Typeface.BOLD);
+//                teamAQ4.setTypeface(null, Typeface.BOLD);
+//                teamBQ4.setTypeface(null, Typeface.BOLD);
 //
 //                quarter++;
 //                break;
 //            case 2:
-//                Q2.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ2.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ2.setBackgroundResource(R.color.inactiveQuarter);
+//                Q2.setTypeface(null, Typeface.ITALIC);
+//                teamAQ2.setTypeface(null, Typeface.ITALIC);
+//                teamBQ2.setTypeface(null, Typeface.ITALIC);
 //
-//                Q3.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ3.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ3.setBackgroundResource(R.color.activeQuarter);
+//                Q3.setTypeface(null, Typeface.BOLD);
+//                teamAQ3.setTypeface(null, Typeface.BOLD);
+//                teamBQ3.setTypeface(null, Typeface.BOLD);
 //
 //                quarter++;
 //                break;
 //            case 1:
-//                Q1.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ1.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ1.setBackgroundResource(R.color.inactiveQuarter);
+//                Q1.setTypeface(null, Typeface.ITALIC);
+//                teamAQ1.setTypeface(null, Typeface.ITALIC);
+//                teamBQ1.setTypeface(null, Typeface.ITALIC);
 //
-//                Q2.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ2.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ2.setBackgroundResource(R.color.activeQuarter);
+//                Q2.setTypeface(null, Typeface.BOLD);
+//                teamAQ2.setTypeface(null, Typeface.BOLD);
+//                teamBQ2.setTypeface(null, Typeface.BOLD);
 //
 //                quarter++;
 //                break;
 //            default:
+//                quarter++;
 //                break;
 //        }
 //    }
 
     public void endQuarter(View view) {
         Button b = (Button) view.findViewById(R.id.endQuarter);
-        switch (quarter) {
+        quarter++;
+        setQuarterBold();
+
+        switch (quarter)
+        {
+            case 1:
+            case 2:
+            case 3:
+                break;
             case 4:
-
-
-//                TODO - END THE GAME
-
+                b.setText("End Game");
+                break;
+            default:
                 complete = 1;
                 if (homeScores[4] > opponentScores[4])
                 {
@@ -467,65 +534,16 @@ public class CourtActivity extends Activity {
                 updateScoreBoard();
                 updateDatabase();
 
-
-                Q4.setTypeface(null, Typeface.ITALIC);
-                teamAQ4.setTypeface(null, Typeface.ITALIC);
-                teamBQ4.setTypeface(null, Typeface.ITALIC);
-
-                T.setTypeface(null, Typeface.BOLD_ITALIC);
-                teamATotal.setTypeface(null, Typeface.BOLD_ITALIC);
-                teamBTotal.setTypeface(null, Typeface.BOLD_ITALIC);
-
-                quarter++;
-
-
                 setContentView(R.layout.summary);
 
+                readDatabase();
+                setReferencesInLayout();
+                updateScoreBoard();
 
-                break;
-
-
-            case 3:
-                b.setText("End Game");
-
-                Q3.setTypeface(null, Typeface.ITALIC);
-                teamAQ3.setTypeface(null, Typeface.ITALIC);
-                teamBQ3.setTypeface(null, Typeface.ITALIC);
-
-                Q4.setTypeface(null, Typeface.BOLD);
-                teamAQ4.setTypeface(null, Typeface.BOLD);
-                teamBQ4.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            case 2:
-                Q2.setTypeface(null, Typeface.ITALIC);
-                teamAQ2.setTypeface(null, Typeface.ITALIC);
-                teamBQ2.setTypeface(null, Typeface.ITALIC);
-
-                Q3.setTypeface(null, Typeface.BOLD);
-                teamAQ3.setTypeface(null, Typeface.BOLD);
-                teamBQ3.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            case 1:
-
-                Q1.setTypeface(null, Typeface.ITALIC);
-                teamAQ1.setTypeface(null, Typeface.ITALIC);
-                teamBQ1.setTypeface(null, Typeface.ITALIC);
-
-                Q2.setTypeface(null, Typeface.BOLD);
-                teamAQ2.setTypeface(null, Typeface.BOLD);
-                teamBQ2.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            default:
-                quarter++;
                 break;
         }
     }
+
 
     public void teamAPlus1(View view)
     {
@@ -538,4 +556,21 @@ public class CourtActivity extends Activity {
         Resources res = getResources();
         updateInternalScores(false, res.getInteger(R.integer.freeThrow));
     }
+
+    public void addPoint(Point p, boolean made)
+    {
+        if (made)
+        {
+            madeShots.add(p);
+        }
+        else
+        {
+            missedShots.add(p);
+        }
+    }
+
+
+
+
+
 }
