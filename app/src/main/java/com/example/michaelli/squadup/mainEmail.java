@@ -3,16 +3,43 @@ package com.example.michaelli.squadup;
 /**
  * Created by Connie Fan on 4/5/2016.
  */
+import android.app.DialogFragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bailey.mobile.squadup.R;
+
+/*
+public class mainEmail extends DialogFragment {
+
+    public static mainEmail newInstance() {
+        mainEmail frag = new mainEmail();
+        return frag;
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.email, container);
+        Button shareButton = (Button) view.findViewById(R.id.shareButton);
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), mainEmail.class); //Add the summary class
+                startActivity(i);
+            }
+        });
+
+*/
 
 public class mainEmail extends Activity {
 
@@ -46,7 +73,6 @@ public class mainEmail extends Activity {
         String[] recipients = {recipient.getText().toString()};
         Intent email = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:"));
         email.setType("message/rfc822");
-
         email.putExtra(Intent.EXTRA_EMAIL, recipients);
         email.putExtra(Intent.EXTRA_SUBJECT, subject.getText().toString());
         email.putExtra(Intent.EXTRA_TEXT, body.getText().toString());

@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.util.Log;
 import com.bailey.mobile.squadup.R;
 import android.database.Cursor;
+
 
 /**
  * Created by michaelli on 3/29/16.
@@ -23,7 +25,7 @@ public class Login extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        //create dictionary helper that accesses/creates database
+
         dictionaryHelper = new DictionaryHelper(this);
         SQLiteDatabase test = dictionaryHelper.getWritableDatabase();
         Log.d("Login", dictionaryHelper.getDatabaseName());
@@ -33,6 +35,14 @@ public class Login extends Activity{
         c.moveToNext();
         Log.d("Login", c.getString(0));
 
+        Button login = (Button) findViewById(R.id.intro_login_button);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), GameHistory.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
