@@ -77,7 +77,7 @@ public class mainEmail extends Activity {
         email.setType("message/rfc822");
         email.putExtra(Intent.EXTRA_EMAIL, recipients);
         email.putExtra(Intent.EXTRA_SUBJECT, subject.getText().toString());
-        email.putExtra(Intent.EXTRA_TEXT, gameInfo);
+        email.putExtra(Intent.EXTRA_TEXT, body.getText().toString() + "\n\n\n" + gameInfo);
 
         try {
             startActivity(Intent.createChooser(email, "Choose an email client from..."));
