@@ -4,14 +4,14 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:background="@drawable/basketballcourt"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+    android:weightSum="1">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:id="@+id/imageView5"
-        android:layout_gravity="center_horizontal" />
+        android:src="@drawable/spread"
+        android:id="@+id/imageView5" />
 
     <EditText
             android:id="@+id/recipient"
@@ -42,7 +42,8 @@
             android:textColor="#FFF"
             android:textColorHint="#FFF"
             android:hint="Message body"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_weight="0.43" />
 
         <Button
             android:id="@+id/sendEmail"
