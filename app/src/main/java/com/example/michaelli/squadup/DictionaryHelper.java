@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by michaelli on 3/29/16.
  */
@@ -71,8 +74,12 @@ public class DictionaryHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+
         values.put("Opponent", opponent);
-        values.put("Date", "datetime()");
+        values.put("Date", dateFormat.format(date));
+
         db.insert("GAMES", null, values);
         db.close();
 //

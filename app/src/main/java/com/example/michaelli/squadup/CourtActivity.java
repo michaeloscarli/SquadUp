@@ -69,11 +69,24 @@ public class CourtActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.capture_actions);
-        newGame();
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        Bundle passedData = getIntent().getExtras();
+        if (passedData!=null){
+            opponentName = passedData.getString("opponentName");
+            if (opponentName!=null){ //start a new game
+                setContentView(R.layout.capture_actions);
+                newGame(opponentName);
+            }
+            else { //old game - gameID is given, go to summary portrait view
+                gameID = Integer.parseInt(passedData.getString("gameID"));
+                setContentView(R.layout.summary);
+                readDatabase();
+            }
+        }
+
+        setReferencesInLayout();
+        updateScoreBoard();
 
 //        updateScoreBoard();
 
@@ -141,7 +154,7 @@ public class CourtActivity extends Activity {
         PTS = (TextView) this.findViewById(R.id.totalPTS);
     }
 
-    private void newGame()
+    private void newGame(String opponentName)
     {
         quarter = 1;
 
@@ -170,7 +183,7 @@ public class CourtActivity extends Activity {
 
         dh = new DictionaryHelper(this);
 
-        dh.insertGame("Jason");
+        dh.insertGame(opponentName);
 
         Cursor cursor = dh.getReadableDatabase().rawQuery("SELECT max(_id) FROM GAMES;", null);
         if (cursor != null && cursor.moveToFirst())

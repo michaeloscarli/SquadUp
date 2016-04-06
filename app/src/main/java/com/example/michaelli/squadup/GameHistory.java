@@ -36,7 +36,6 @@ public class GameHistory extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_history);
         dictionaryHelper = new DictionaryHelper(this);
-        dictionaryHelper.insertGame("Jason");
         SQLiteDatabase db = dictionaryHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM GAMES;",null);
         populateListView();

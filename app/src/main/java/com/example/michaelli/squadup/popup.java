@@ -38,8 +38,7 @@ import com.bailey.mobile.squadup.R;
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getActivity(),CourtActivity.class);
-                    Log.d("Test", opponent_name.getText().toString());
-//                    i.putExtra("opponentName",opponent_name.getText().toString());
+                    i.putExtra("opponentName",opponent_name.getText().toString());
                     startActivity(i);
                 }
             });
