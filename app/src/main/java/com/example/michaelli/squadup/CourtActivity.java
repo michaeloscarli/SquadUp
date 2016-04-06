@@ -102,6 +102,7 @@ public class CourtActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), mainEmail.class);
+                i.putExtra("gameID",gameID);
                 startActivity(i);
             }
         });
