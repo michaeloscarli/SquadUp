@@ -438,6 +438,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:onClick="emailGame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -451,6 +452,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:onClick="goToHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

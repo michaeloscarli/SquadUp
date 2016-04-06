@@ -107,23 +107,24 @@ public class CourtActivity extends Activity {
 //        Drawable background = backgroundimage.getBackground();
 //        background.setAlpha(80);
 
-        Button shareButton = (Button) findViewById(R.id.shareButton);
-        shareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), mainEmail.class);
-                i.putExtra("gameID",gameID);
-                startActivity(i);
-            }
-        });
-        Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), GameHistory.class);
-                startActivity(i);
-            }
-        });
+//        Button shareButton = (Button) findViewById(R.id.shareButton);
+//        shareButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getBaseContext(), mainEmail.class);
+//                i.putExtra("gameID",gameID);
+//                startActivity(i);
+//            }
+//        });
+//        Button homeButton = (Button) findViewById(R.id.homeButton);
+//        homeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getBaseContext(), GameHistory.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
     }
 
     public void onBackPressed()
@@ -485,7 +486,19 @@ public class CourtActivity extends Activity {
         }
     }
 
+    public void goToHome(View view){
+        Log.d("home", "going home");
+        Intent i = new Intent(getBaseContext(), GameHistory.class);
+        startActivity(i);
+        finish();
+    }
 
+    public void emailGame(View view){
+        Log.d("email", "going email");
+        Intent i = new Intent(getBaseContext(), mainEmail.class);
+        i.putExtra("gameID", gameID);
+        startActivity(i);
+    }
 
     public void teamAPlus1(View view)
     {
