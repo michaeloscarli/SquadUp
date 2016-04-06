@@ -1,9 +1,12 @@
 <GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:columnCount="1"
     android:orientation="vertical"
+    android:background="@drawable/basketballcourt"
+    android:id="@+id/summary_background"
+
     >
     <LinearLayout
         android:orientation="horizontal"
@@ -18,7 +21,9 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/placeholder"
-            android:id="@+id/gameDate"/>
+            android:textColor="#FFA500"
+            android:id="@+id/gameDate"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -46,14 +51,17 @@
         android:layout_weight="0.2"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Overall Score" />
+        android:text="Overall Score"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        />
 
     </LinearLayout>
 
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@android:color/darker_gray"/>
 
     /*SPACE*/
@@ -88,6 +96,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Q1"
             android:id="@+id/Q1"
+            android:textColor="#FFFFFF"
             />
 
         <TextView
@@ -97,7 +106,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Q2"
-            android:id="@+id/Q2" />
+            android:id="@+id/Q2"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -106,7 +116,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Q3"
-            android:id="@+id/Q3" />
+            android:id="@+id/Q3"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -115,7 +126,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Q4"
-            android:id="@+id/Q4" />
+            android:id="@+id/Q4"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -124,7 +136,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="T"
-            android:id="@+id/T" />
+            android:id="@+id/T"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -144,7 +157,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
-            android:id="@+id/teamA" />
+            android:id="@+id/teamA"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -153,7 +167,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamAQ1"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -162,7 +177,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamAQ2"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -171,7 +187,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamAQ3"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -180,7 +197,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamAQ4"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -189,7 +207,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamATotal"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -204,7 +223,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
-            android:id="@+id/teamB" />
+            android:id="@+id/teamB"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -213,7 +233,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamBQ1"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -222,7 +243,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamBQ2"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -231,7 +253,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamBQ3"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -240,7 +263,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamBQ4"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -249,7 +273,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/teamBTotal"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -277,14 +302,16 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Player Stats" />
+            android:text="Player Stats"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@android:color/darker_gray"/>
 
     /*SPACE*/
@@ -319,6 +346,7 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="FT"
+            android:textColor="#FFFFFF"
             />
 
         <TextView
@@ -327,7 +355,8 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="2PT" />
+            android:text="2PT"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -335,7 +364,8 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="3PT" />
+            android:text="3PT"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -343,7 +373,8 @@
             android:layout_weight="0.1"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Total" />
+            android:text="Total"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -363,7 +394,8 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
-            android:id="@+id/playerName" />
+            android:id="@+id/playerName"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -372,7 +404,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/FT"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -381,7 +414,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/twoPT"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -390,7 +424,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/threePT"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="0dp"
@@ -399,7 +434,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/placeholder"
             android:id="@+id/totalPTS"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
