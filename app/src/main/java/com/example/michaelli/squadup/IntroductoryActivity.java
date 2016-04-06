@@ -25,9 +25,6 @@ import android.view.GestureDetector;
 import android.content.Context;
 import android.view.GestureDetector.SimpleOnGestureListener;
 
-/**
- * Created by jackiehuey on 4/6/16.
- */
 public class IntroductoryActivity extends Activity{
 
     protected void onCreate(Bundle savedInstanceState) {

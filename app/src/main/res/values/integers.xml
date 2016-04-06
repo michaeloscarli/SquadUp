@@ -4,4 +4,5 @@
     <integer name="twoPointer">2</integer>
     <integer name="freeThrow">1</integer>
     <integer name="missedShot">0</integer>
+    <integer name="pointRadius">20</integer>
 </resources>

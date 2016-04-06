@@ -7,12 +7,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 
 import com.bailey.mobile.squadup.R;
@@ -79,6 +82,12 @@ public class CourtView extends ImageView implements View.OnTouchListener{
         CourtActivity activity = (CourtActivity) getContext();
         Resources res = getResources();
 
+        TextView T = (TextView) activity.findViewById(R.id.T);
+        if (T.getTypeface() != null && T.getTypeface().getStyle()==Typeface.BOLD)
+        {
+            return true;
+        }
+
         int action = event.getActionMasked();
         float x = event.getX();
         float y = event.getY();
@@ -112,6 +121,7 @@ public class CourtView extends ImageView implements View.OnTouchListener{
 
                 activity.updateDatabase();
                 mCanvas.drawCircle(x, y, dotRadius, mPaint);
+
                 invalidate();
                 break;
             default:
