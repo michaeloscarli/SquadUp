@@ -2,36 +2,40 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+    android:gravity="center_vertical">
 
     <EditText
             android:id="@+id/recipient"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Recipient"
-        android:text="bestie@example.com" />
+            android:hint="bestie@example.com"
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/subject"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Subject" />
+            android:hint="Subject"
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/body"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Message body" />
+            android:hint="Message body"
+            android:layout_gravity="center" />
 
         <Button
             android:id="@+id/sendEmail"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Compose an email" />
+            android:text="Send!"
+            android:layout_gravity="center" />
 
     </LinearLayout>
