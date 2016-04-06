@@ -24,10 +24,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 
-
-/**
- * Created by michaelli on 4/4/16.
- */
 public class GameHistory extends Activity{
     DictionaryHelper dictionaryHelper;
 

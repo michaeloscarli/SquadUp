@@ -14,10 +14,6 @@ import android.util.Log;
 import com.bailey.mobile.squadup.R;
 import android.database.Cursor;
 
-
-/**
- * Created by michaelli on 3/29/16.
- */
 public class Login extends Activity{
     DictionaryHelper dictionaryHelper;
 

@@ -10,9 +10,7 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by michaelli on 3/29/16.
- */
+
 public class DictionaryHelper extends SQLiteOpenHelper {
 
 

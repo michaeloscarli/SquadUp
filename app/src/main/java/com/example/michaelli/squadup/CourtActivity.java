@@ -17,9 +17,6 @@ import android.widget.Toast;
 
 import com.bailey.mobile.squadup.R;
 
-/**
- * Created by Jason on 4/4/2016.
- */
 public class CourtActivity extends Activity {
 
     private int quarter;

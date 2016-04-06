@@ -12,9 +12,7 @@ import android.view.View.OnTouchListener;
 import com.bailey.mobile.squadup.R;
 import android.widget.Button;
 
-/**
- * Created by jackiehuey on 4/6/16.
- */
+
 public class frag4 extends Activity {
 
     @Override

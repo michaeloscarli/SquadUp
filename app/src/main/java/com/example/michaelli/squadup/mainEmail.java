@@ -1,8 +1,5 @@
 package com.example.michaelli.squadup;
 
-/**
- * Created by Connie Fan on 4/5/2016.
- */
 import android.app.DialogFragment;
 import android.net.Uri;
 import android.os.Bundle;
