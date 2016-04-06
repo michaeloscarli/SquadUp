@@ -37,8 +37,8 @@ public class DictionaryHelper extends SQLiteOpenHelper {
                     "PlayerTotal3PT int default 0, " +
                     "PlayerTotalPTS int default 0, " +
                     "Date datetime, " +
-                    "Complete bool default false," +
-                    "Win bool default false);";
+                    "Complete int default 0," +
+                    "Win int default 0);";
 
     private static final String DICTIONARY_PLAYER_CREATE =
             "CREATE TABLE PLAYERS " +

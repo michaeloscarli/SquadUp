@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,9 +46,10 @@ public class CourtActivity extends Activity {
     private TextView threePT;
     private TextView PTS;
 
+    private TextView gameDate;
+
     private int homeScores[] = null;
     private int opponentScores[] = null;
-
     private int playerStats[] = null;
     /*
         playerStats[0] = madeFG
@@ -61,25 +63,33 @@ public class CourtActivity extends Activity {
     private int complete;
     private int win;
 
-    private DictionaryHelper dh;
-    private SQLiteDatabase db;
+    private String date;
 
+    private DictionaryHelper dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setContentView(R.layout.capture_actions);
+
         Bundle passedData = getIntent().getExtras();
-        if (passedData!=null){
+        if (passedData != null)
+        {
             opponentName = passedData.getString("opponentName");
-            if (opponentName!=null){ //start a new game
+            if (opponentName != null)
+            { //start a new game
                 setContentView(R.layout.capture_actions);
                 initializeGame();
                 newGame(opponentName);
             }
-            else { //old game - gameID is given, go to summary portrait view
+            else
+            { //old game - gameID is given, go to summary portrait view
                 gameID = passedData.getInt("gameID");
                 setContentView(R.layout.summary);
+//                View backgroundimage = findViewById(R.id.summary_background);
+//                Drawable background = backgroundimage.getBackground();
+//                background.setAlpha(90);
+
                 initializeGame();
                 readDatabase();
             }
@@ -146,6 +156,36 @@ public class CourtActivity extends Activity {
         updateScoreBoard();
     }
 
+    public void readDatabase()
+    {
+        SQLiteDatabase db = dh.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id=" + gameID, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                opponentName = cursor.getString(cursor.getColumnIndex("Opponent"));
+                homeScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ1")));
+                homeScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ2")));
+                homeScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ3")));
+                homeScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ4")));
+                homeScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeScore")));
+                opponentScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ1")));
+                opponentScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ2")));
+                opponentScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ3")));
+                opponentScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ4")));
+                opponentScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentScore")));
+                playerStats[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMadeFG")));
+                playerStats[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalFG")));
+                playerStats[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMade3PT")));
+                playerStats[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotal3PT")));
+                playerStats[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalPTS")));
+                date = cursor.getString(cursor.getColumnIndex("Date"));
+                complete = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Complete")));
+                win = Integer.parseInt(cursor.getString(cursor.getColumnIndex("Win")));
+            }while(cursor.moveToNext());
+        }
+    }
+
     private void setReferencesInLayout()
     {
         teamAQ1 = (TextView) this.findViewById(R.id.teamAQ1);
@@ -168,20 +208,13 @@ public class CourtActivity extends Activity {
         FG = (TextView) this.findViewById(R.id.FG);
         threePT = (TextView) this.findViewById(R.id.threePT);
         PTS = (TextView) this.findViewById(R.id.totalPTS);
+
+        gameDate = (TextView) this.findViewById(R.id.gameDate);
     }
 
     private void initializeGame()
     {
         quarter = 1;
-
-        setReferencesInLayout();
-
-        T.setTypeface(null, Typeface.BOLD);
-        teamATotal.setTypeface(null, Typeface.BOLD);
-        teamBTotal.setTypeface(null, Typeface.BOLD);
-        Q1.setTypeface(null, Typeface.BOLD);
-        teamAQ1.setTypeface(null, Typeface.BOLD);
-        teamBQ1.setTypeface(null, Typeface.BOLD);
 
         homeScores = new int[5];
         opponentScores = new int[5];
@@ -197,11 +230,17 @@ public class CourtActivity extends Activity {
         complete = 0;
         win = 0;
 
+        setReferencesInLayout();
+
         dh = new DictionaryHelper(this);
     }
 
     private void newGame(String opponentName)
     {
+        Q1.setTypeface(null, Typeface.BOLD);
+        teamAQ1.setTypeface(null, Typeface.BOLD);
+        teamBQ1.setTypeface(null, Typeface.BOLD);
+
         dh.insertGame(opponentName);
 
         Cursor cursor = dh.getReadableDatabase().rawQuery("SELECT max(_id) FROM GAMES;", null);
@@ -259,33 +298,7 @@ public class CourtActivity extends Activity {
     }
 
 
-    public void readDatabase()
-    {
-        SQLiteDatabase db = dh.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM GAMES WHERE _id=" + gameID, null);
 
-        if(cursor.moveToFirst()){
-            do{
-                opponentName = cursor.getString(cursor.getColumnIndex("Opponent"));
-                homeScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ1")));
-                homeScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ2")));
-                homeScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ3")));
-                homeScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeQ4")));
-                homeScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("HomeScore")));
-                opponentScores[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ1")));
-                opponentScores[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ2")));
-                opponentScores[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ3")));
-                opponentScores[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentQ4")));
-                opponentScores[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("OpponentScore")));
-                playerStats[0] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMadeFG")));
-                playerStats[1] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalFG")));
-                playerStats[2] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerMade3PT")));
-                playerStats[3] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotal3PT")));
-                playerStats[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndex("PlayerTotalPTS")));
-            }while(cursor.moveToNext());
-        }
-
-    }
 
     public void updateScoreBoard()
     {
@@ -321,9 +334,61 @@ public class CourtActivity extends Activity {
         {
             PTS.setText(Integer.toString(playerStats[4]));
         }
-//        FG = (TextView) this.findViewById(R.id.FG);
-//        threePT = (TextView) this.findViewById(R.id.threePT);
-//        PTS = (TextView) this.findViewById(R.id.T);
+        if (gameDate != null)
+        {
+            gameDate.setText(date);
+        }
+
+        setQuarterBold();
+    }
+
+    public void setQuarterBold()
+    {
+        Q1.setTypeface(null, Typeface.NORMAL);
+        Q2.setTypeface(null, Typeface.NORMAL);
+        Q3.setTypeface(null, Typeface.NORMAL);
+        Q4.setTypeface(null, Typeface.NORMAL);
+        T.setTypeface(null, Typeface.NORMAL);
+        teamAQ1.setTypeface(null, Typeface.NORMAL);
+        teamAQ2.setTypeface(null, Typeface.NORMAL);
+        teamAQ3.setTypeface(null, Typeface.NORMAL);
+        teamAQ4.setTypeface(null, Typeface.NORMAL);
+        teamATotal.setTypeface(null, Typeface.NORMAL);
+        teamBQ1.setTypeface(null, Typeface.NORMAL);
+        teamBQ2.setTypeface(null, Typeface.NORMAL);
+        teamBQ3.setTypeface(null, Typeface.NORMAL);
+        teamBQ4.setTypeface(null, Typeface.NORMAL);
+        teamBTotal.setTypeface(null, Typeface.NORMAL);
+
+        switch (quarter)
+        {
+            case 1:
+                Q1.setTypeface(null, Typeface.BOLD);
+                teamAQ1.setTypeface(null, Typeface.BOLD);
+                teamBQ1.setTypeface(null, Typeface.BOLD);
+                break;
+            case 2:
+                Q2.setTypeface(null, Typeface.BOLD);
+                teamAQ2.setTypeface(null, Typeface.BOLD);
+                teamBQ2.setTypeface(null, Typeface.BOLD);
+                break;
+            case 3:
+                Q3.setTypeface(null, Typeface.BOLD);
+                teamAQ3.setTypeface(null, Typeface.BOLD);
+                teamBQ3.setTypeface(null, Typeface.BOLD);
+                break;
+            case 4:
+                Q4.setTypeface(null, Typeface.BOLD);
+                teamAQ4.setTypeface(null, Typeface.BOLD);
+                teamBQ4.setTypeface(null, Typeface.BOLD);
+                break;
+
+            default:
+                T.setTypeface(null, Typeface.BOLD);
+                teamATotal.setTypeface(null, Typeface.BOLD);
+                teamBTotal.setTypeface(null, Typeface.BOLD);
+                break;
+        }
     }
 
     public void updateDatabase() {
@@ -390,156 +455,37 @@ public class CourtActivity extends Activity {
         updateDatabase();
     }
 
-//    public void endQuarter(View view) {
-//        Button b = (Button) view.findViewById(R.id.endQuarter);
-//        switch (quarter) {
-//            case 4:
-//
-//
-////                TODO - END THE GAME
-//
-//
-//
-//                complete = true;
-//                if (homeScores[4] > opponentScores[4])
-//                {
-//                    win = true;
-//                }
-//
-//                updateScoreBoard();
-//                updateDatabase();
-//
-//
-//
-//
-//                Q4.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ4.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ4.setBackgroundResource(R.color.inactiveQuarter);
-//
-//                T.setBackgroundResource(R.color.activeQuarter);
-//                teamATotal.setBackgroundResource(R.color.activeQuarter);
-//                teamBTotal.setBackgroundResource(R.color.activeQuarter);
-//
-//                quarter++;
-//                break;
-//
-//
-//            case 3:
-//                b.setText("End Game");
-//
-//                Q3.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ3.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ3.setBackgroundResource(R.color.inactiveQuarter);
-//
-//                Q4.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ4.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ4.setBackgroundResource(R.color.activeQuarter);
-//
-//                quarter++;
-//                break;
-//            case 2:
-//                Q2.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ2.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ2.setBackgroundResource(R.color.inactiveQuarter);
-//
-//                Q3.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ3.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ3.setBackgroundResource(R.color.activeQuarter);
-//
-//                quarter++;
-//                break;
-//            case 1:
-//                Q1.setBackgroundResource(R.color.inactiveQuarter);
-//                teamAQ1.setBackgroundResource(R.color.inactiveQuarter);
-//                teamBQ1.setBackgroundResource(R.color.inactiveQuarter);
-//
-//                Q2.setBackgroundResource(R.color.activeQuarter);
-//                teamAQ2.setBackgroundResource(R.color.activeQuarter);
-//                teamBQ2.setBackgroundResource(R.color.activeQuarter);
-//
-//                quarter++;
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-
     public void endQuarter(View view) {
         Button b = (Button) view.findViewById(R.id.endQuarter);
+        quarter++;
+        setQuarterBold();
+
         switch (quarter) {
+            case 1:
+            case 2:
+            case 3:
+                break;
             case 4:
-
-
-//                TODO - END THE GAME
+                b.setText("End Game");
+                break;
+            default:
 
                 complete = 1;
-                if (homeScores[4] > opponentScores[4])
-                {
+                if (homeScores[4] > opponentScores[4]) {
                     win = 1;
                 }
 
-                updateScoreBoard();
-                updateDatabase();
-
-
-                Q4.setTypeface(null, Typeface.ITALIC);
-                teamAQ4.setTypeface(null, Typeface.ITALIC);
-                teamBQ4.setTypeface(null, Typeface.ITALIC);
-
-                T.setTypeface(null, Typeface.BOLD_ITALIC);
-                teamATotal.setTypeface(null, Typeface.BOLD_ITALIC);
-                teamBTotal.setTypeface(null, Typeface.BOLD_ITALIC);
-
-                quarter++;
-
-
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.summary);
 
-
-                break;
-
-
-            case 3:
-                b.setText("End Game");
-
-                Q3.setTypeface(null, Typeface.ITALIC);
-                teamAQ3.setTypeface(null, Typeface.ITALIC);
-                teamBQ3.setTypeface(null, Typeface.ITALIC);
-
-                Q4.setTypeface(null, Typeface.BOLD);
-                teamAQ4.setTypeface(null, Typeface.BOLD);
-                teamBQ4.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            case 2:
-                Q2.setTypeface(null, Typeface.ITALIC);
-                teamAQ2.setTypeface(null, Typeface.ITALIC);
-                teamBQ2.setTypeface(null, Typeface.ITALIC);
-
-                Q3.setTypeface(null, Typeface.BOLD);
-                teamAQ3.setTypeface(null, Typeface.BOLD);
-                teamBQ3.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            case 1:
-
-                Q1.setTypeface(null, Typeface.ITALIC);
-                teamAQ1.setTypeface(null, Typeface.ITALIC);
-                teamBQ1.setTypeface(null, Typeface.ITALIC);
-
-                Q2.setTypeface(null, Typeface.BOLD);
-                teamAQ2.setTypeface(null, Typeface.BOLD);
-                teamBQ2.setTypeface(null, Typeface.BOLD);
-
-                quarter++;
-                break;
-            default:
-                quarter++;
+                readDatabase();
+                setReferencesInLayout();
+                updateScoreBoard();
                 break;
         }
     }
+
+
 
     public void teamAPlus1(View view)
     {
