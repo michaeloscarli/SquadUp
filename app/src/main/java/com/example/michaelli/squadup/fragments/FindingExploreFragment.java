@@ -1,4 +1,4 @@
-package com.example.michaelli.squadup;
+package com.example.michaelli.squadup.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
